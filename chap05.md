@@ -77,6 +77,8 @@ for i in range(len(first)):
 
 연관 배열을 사용해서 불필요한 반복문을 삭제 
 
+##### code 5-2 python
+
 ```python
 # key 값 지정. 중복된 값은 알아서 스루함
 for i in range(len(first)):
@@ -90,3 +92,56 @@ print(max(topic_count.values()))
 ```
 
 > 나는 조건문을 사용해서 for문 하나를 썼는데, 여기에서는 for 두번 써서 사용했다. 훨씬 코드가 깔끔해 보이는듯. 이전 chap03 에서 조건문을 덜 사용하게 써보라고했는데, 그 부분을 고려해야할 것 같다. 
+
+
+
+
+
+#### 2. 암호
+
+- 입력된 배열의 값 중, 한 값만 더해서 바꾼다. 
+- 그 중 모든 값을 곱한 값이 가장 최댓값이 되게 return 하면된다. 
+
+내가 짠 코드
+
+```python
+def solution(nums):
+    nums.sort()
+    nums[0] += 1
+    result = reduce(lambda x, y: x * y, nums)
+    return result
+```
+
+##### code 5-3 python 
+
+```python 
+    ans = 0
+    for i in range(len(numbers)):
+        temp = 1
+        for j in range(len(numbers)):
+            if i == j:
+                temp *= numbers[j] + 1
+            else:
+                temp *= numbers[j]
+        print(temp)
+        ans = max(ans, temp)
+    return ans
+```
+
+#### 응용기술
+
+제일 작은 값에 +1 하면 곱하면 되는문제. 간단하게 증며하면 +1 하면 곱의 증가율이 (n+1)/n 이기 때문에, n이 작을수록 같이 커진다. 
+
+##### code 5-4 python
+
+```python
+def solution(numbers):
+    ret = 1
+    numbers.sort()
+    numbers[0] += 1
+    for i in numbers:
+        ret *= i
+    return ret
+```
+
+> 내 코드가 응용 기술의 접근방식이라 기분이 좋았다. lambda를 써서 사용했는데 반복문을 써도 두줄이니, 모듈을 불러와서 reduce 를 쓰는것보다 간결한 것 같다. 

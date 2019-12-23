@@ -165,10 +165,6 @@ for i in range(len(from_id)):
 print(bottles)
 ```
 
-----
-
-
-
 궁금한 것
 
 - 저번에 찾아본건, range(len(arr)) 방식보다 enumerate(len)방식이 좋다고하는데, 그럴경우에 index, value 값을 다 뽑아준다. 하지만 여기서는 굳이 필요없어보이는데 어떤 방식이 좋은지 모르겠음. 시간테스트 해봤으나 테스트 값이 간단하여 비슷비슷하게 나온당
