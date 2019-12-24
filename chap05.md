@@ -145,3 +145,81 @@ def solution(numbers):
 ```
 
 > 내 코드가 응용 기술의 접근방식이라 기분이 좋았다. lambda를 써서 사용했는데 반복문을 써도 두줄이니, 모듈을 불러와서 reduce 를 쓰는것보다 간결한 것 같다. 
+
+
+
+#### 3. 재미있는 수학
+
+각 배수마다 각자리의 수를 합하면 그 배수로 나눠떨어지는 수가 있는데, 3 ~ 30진법 중 그런 배수 찾기
+
+> 와 엄청 오래걸렸는데 못풀었다. 10자리수를 받아 나눠서 값을 체크하고 나머지가 생기면 배열에서 remove 해주는 방식으로 진행했는데, 10진수 이상의 값을 어떻게 처리할지 감도 안왔다.  ㅠㅠ
+
+내가짠 코드
+
+```python
+def solution(base):
+    arr = []
+    for i in range(2, base):
+        arr.append(i)
+        j = i
+        while j < 1000:
+            result = change_base_10_to_number(j, base)
+            j += i
+            if (result % i) != 0:
+                arr.remove(i)
+                break
+    return arr
+
+def change_base_10_to_number(number, base):
+    """
+    10진법의 숫자를 n 진법으로 바꾼후 각각의 값을 더한다.
+    """
+    result = 0
+    while number > 0:
+        result += (number % base)
+        number //= base
+
+    return result
+```
+
+##### python  5-5
+
+```python 
+def solution(base):
+    arr = []
+    for n in range(2, base):
+        ok = True
+        for n1 in range(base):
+            for n2 in range(base):
+                for n3 in range(base):
+                    if (n1 + n2 * base + n2 * base * base) % n == 0 and (n1 + n2 + n3) % n != 0:
+                        ok = False
+                        break
+                if not ok:
+                    break
+            if not ok:
+                break
+        if ok:
+            arr.append(n)
+    return arr
+```
+
+#### 응용기술
+
+1과 base 의 차가 n 으로 나누어 떨어지면, 어떤 자릿수라도 base 로 나누어 떨어진다. 
+
+10진수의 경우 10-1 = 9 
+
+1~9까지 9를 나눴을 때 나누어 떨어지는 수는 3,9
+
+> 헐 답이 3과 9이다....엄청어렵게풀었네.. 수학을 잘해야되나보다.
+
+```python 
+def solution(base):
+    arr = []
+    for i in range(2, base):
+        if (base - 1) % i == 0:
+            arr.append(i)
+    return arr
+```
+
